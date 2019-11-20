@@ -54,7 +54,7 @@
 - 拉取项目代码
 ```bash
 git clone https://github.com/KINNNNNNG/wolf-admin-vue
-cd ant-design-pro-vue
+cd wolf-admin-vue
 ```
 
 - 安装依赖
