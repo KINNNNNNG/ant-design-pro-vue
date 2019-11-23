@@ -35,6 +35,7 @@ const user = {
   actions: {
     // 登录
     Login ({ commit }, userInfo) {
+      console.log('user.js-->Login:', commit, userInfo)
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           const result = response.result

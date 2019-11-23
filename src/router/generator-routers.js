@@ -108,6 +108,7 @@ export const generatorDynamicRouter = (token) => {
  * @returns {*}
  */
 export const generator = (routerMap, parent) => {
+  console.log('generator:' + '根据后端数据生成rooter')
   return routerMap.map(item => {
     const { title, show, hideChildren, hiddenHeaderContent, target, icon } = item.meta || {}
     const currentRouter = {

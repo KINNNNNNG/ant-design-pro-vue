@@ -699,10 +699,10 @@ const userNav = (options) => {
       'meta': {
         'title': '个人设置',
         'hideHeader': true,
-        'hideChildren': true,
+        'hideChildren': false,
         'show': true
       },
-      'redirect': '/account/settings/base',
+      // 'redirect': '/account/settings/base',
       'component': 'AccountSettings'
     },
     {
@@ -712,8 +712,9 @@ const userNav = (options) => {
       'id': 10031,
       'meta': {
         'title': '基本设置',
-        'show': false
+        'show': true
       },
+      'redirect': '/account/settion/baseSetting',
       'component': 'BaseSettings'
     },
     {
@@ -756,7 +757,18 @@ const userNav = (options) => {
       'id': 10034,
       'meta': {
         'title': '新消息通知',
-        'show': false
+        'show': true
+      },
+      'component': 'NotificationSettings'
+    },
+    {
+      'name': 'test',
+      'path': '/account/settings/notification',
+      'parentId': 0,
+      'id': 10035,
+      'meta': {
+        'title': '新消息通知',
+        'show': true
       },
       'component': 'NotificationSettings'
     }

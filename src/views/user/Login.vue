@@ -117,7 +117,7 @@
 
 <script>
 import md5 from 'md5'
-import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
+import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'// 两步验证组件
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
@@ -172,30 +172,30 @@ export default {
       this.customActiveKey = key
       // this.form.resetFields()
     },
-    handleSubmit (e) {
+    handleSubmit (e) { // 表单提交，登录
       e.preventDefault()
       const {
         form: { validateFields },
         state,
         customActiveKey,
         Login
-      } = this
+      } = this // ES6 解构
 
       state.loginBtn = true
 
-      const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
+      const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']// 需要效验的值
 
-      validateFields(validateFieldsKey, { force: true }, (err, values) => {
+      validateFields(validateFieldsKey, { force: true }, (err, values) => { // force 对已经校验过的表单域，在 validateTrigger 再次被触发时是否再次校验
         if (!err) {
-          console.log('login form', values)
+          console.log('Login.vue->validateFields:', values)
           const loginParams = { ...values }
           delete loginParams.username
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
           loginParams.password = md5(values.password)
           Login(loginParams)
-            .then((res) => this.loginSuccess(res))
-            .catch(err => this.requestFailed(err))
-            .finally(() => {
+            .then((res) => this.loginSuccess(res))// 登录成功
+            .catch(err => this.requestFailed(err))// 登录失败
+            .finally(() => { // 登录结束
               state.loginBtn = false
             })
         } else {
@@ -205,7 +205,7 @@ export default {
         }
       })
     },
-    getCaptcha (e) {
+    getCaptcha (e) { // 获取验证码
       e.preventDefault()
       const { form: { validateFields }, state } = this
 
