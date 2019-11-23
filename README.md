@@ -118,31 +118,38 @@ Modern browsers and IE10.
 |---|---|
 ---
 ~/component 组件文件夹
+
 |文件名|说明|
 |---|---|
 ---
 ~/layouts 页面布局文件夹
+
 |文件名|说明|
 |---|---|
 ---
 ~/mock 模拟数据文件夹
+
 |文件名|说明|
 |---|---|
 ---
 ~/router 路由文件夹
+
 |文件名|说明|
 |---|---|
 ---
 ~/store Vuex 文件夹
+
 |文件名|说明|
 |---|---|
 |index.js| Vuex 主文件，使用modules分模块进行状态管理|
 ---
 ~/utils 工具类文件夹
+
 |文件名|说明|
 |---|---|
 ---
 ~/views 页面文件夹
+
 |文件名|说明|
 |---|---|
 
@@ -165,7 +172,8 @@ Modern browsers and IE10.
 
 > user.js:Login() --> 获取后台数据，更新token
 
-```flow
+<!-- ```flow
+
 st=>start: Login.vue:handleSubmit()
 validate=>operation: Login.vue:validateFields()
 cond=>condition: user.js:Login()
@@ -177,4 +185,5 @@ cond(yes)->Suc
 cond(no)->Fail
 Suc->e
 Fail->e
-```
+``` -->
+![登录流程图](/docs/img/login.svg)
