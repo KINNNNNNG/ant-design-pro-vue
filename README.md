@@ -112,18 +112,56 @@ Modern browsers and IE10.
 
 ### 文件说明
 
-~/store Vuex 文件夹 
+~/api 请求后端的api
 
-   - ~/store/index.js Vuex 主文件，使用modules分模块进行状态管理
-
+|文件名|说明|
+|---|---|
+---
+~/component 组件文件夹
+|文件名|说明|
+|---|---|
+---
+~/layouts 页面布局文件夹
+|文件名|说明|
+|---|---|
+---
+~/mock 模拟数据文件夹
+|文件名|说明|
+|---|---|
+---
+~/router 路由文件夹
+|文件名|说明|
+|---|---|
+---
+~/store Vuex 文件夹
+|文件名|说明|
+|---|---|
+|index.js| Vuex 主文件，使用modules分模块进行状态管理|
+---
+~/utils 工具类文件夹
+|文件名|说明|
+|---|---|
+---
 ~/views 页面文件夹
+|文件名|说明|
+|---|---|
 
 
 ### 流程说明
 
 #### - 登录
 
-- 文件：~/views/user/Login.vue，~/store/modules/user.js，~/api/login.js，(模拟数据：~/mock/service/user.js)
+* 文件|~/store/modules/user.js
+~/api/login.js 
+~/mock/service/user.js 模拟数据
+
+|文件名|说明|
+|---|---|
+|~/views/user/Login.vue|登录页面|
+|~/api/login.js |登录api|
+|~/store/modules/user.js|stroe user模块 请求api，获取数据后更新token|
+|~/mock/service/user.js| |
+
 
 > user.js:Login() --> 获取后台数据，更新token
 
