@@ -13,15 +13,15 @@
         @change="handleTabClick"
       >
         <a-tab-pane key="tab1" tab="账号密码登录">
-          <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px;" message="账户或密码错误（admin/ant.design )" />
+          <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px;" message="账户或密码错误" />
           <a-form-item>
             <a-input
               size="large"
               type="text"
               placeholder="账户: admin"
               v-decorator="[
-                'username',
-                {rules: [{ required: true, message: '请输入帐户名或邮箱地址' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
+                'loginId',
+                {rules: [{ required: true, message: '请输入帐户名' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
               ]"
             >
               <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
@@ -35,7 +35,7 @@
               autocomplete="false"
               placeholder="密码: admin or ant.design"
               v-decorator="[
-                'password',
+                'pwd',
                 {rules: [{ required: true, message: '请输入密码' }], validateTrigger: 'blur'}
               ]"
             >
@@ -183,15 +183,13 @@ export default {
 
       state.loginBtn = true
 
-      const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']// 需要效验的值
+      const validateFieldsKey = customActiveKey === 'tab1' ? ['loginId', 'pwd'] : ['mobile', 'captcha']// 需要效验的值
 
       validateFields(validateFieldsKey, { force: true }, (err, values) => { // force 对已经校验过的表单域，在 validateTrigger 再次被触发时是否再次校验
         if (!err) {
           console.log('Login.vue->validateFields:', values)
           const loginParams = { ...values }
-          delete loginParams.username
-          loginParams[!state.loginType ? 'email' : 'username'] = values.username
-          loginParams.password = md5(values.password)
+          loginParams.pwd = md5(values.pwd)
           Login(loginParams)
             .then((res) => this.loginSuccess(res))// 登录成功
             .catch(err => this.requestFailed(err))// 登录失败
@@ -249,7 +247,7 @@ export default {
       })
     },
     loginSuccess (res) {
-      console.log(res)
+      console.log('Login.vue-->loginSuccess:', res)
       // check res.homePage define, set $router.push name res.homePage
       // Why not enter onComplete
       /*
@@ -272,6 +270,7 @@ export default {
       this.isLoginError = false
     },
     requestFailed (err) {
+      console.log('Login.vue-->requestFailed:', err)
       this.isLoginError = true
       this.$notification['error']({
         message: '错误',
